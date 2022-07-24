@@ -22,7 +22,7 @@ class SpringbootActivityApplicationTests {
 
 
     /**
-     * 通过npm部署流程
+     * 通过npm部署流程   -=
      */
     @Test
     public void initDeploymentBpmn(){
