@@ -1,18 +1,24 @@
 package com.wp.springbootactivity;
 
+import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @SpringBootTest
 class SpringbootActivityApplicationTests {
 
-    @Autowired
+    @Resource
     private RepositoryService repositoryService;
+    @Resource
+    private ProcessRuntime processRuntime;
+
+
 
 
     /**
@@ -20,6 +26,7 @@ class SpringbootActivityApplicationTests {
      */
     @Test
     public void initDeploymentBpmn(){
+
         String fileName = "bpmn/task_1.bpmn";
         Deployment testDeployment = repositoryService.createDeployment()
                 .addClasspathResource(fileName)
@@ -29,6 +36,9 @@ class SpringbootActivityApplicationTests {
     }
 
 
+    /**
+     * 获取部署信息
+     */
     public void getDeployments(){
         List<Deployment> list = repositoryService.createDeploymentQuery().list();
         if(list.size()>0){
